@@ -403,43 +403,80 @@
 
 
 // File Upload
-var express = require('express')
-var app = express()
-var fs = require('fs')
-var dt = require('./myfirstmodule')
+// var express = require('express')
+// var app = express()
+// var fs = require('fs')
+// var dt = require('./myfirstmodule')
 
-var bodyParser = require('body-parser')
-var multer = require('multer')
-var storage = multer.diskStorage({
-    destination: function (req, file, callback) {
-        callback(null, './upload')
-    },
-    filename: function (req, file, callback) {
-        callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname)
-    }
-})
-var upload = multer({ 
-    storage: storage
-}).single('avatar')
+// var bodyParser = require('body-parser')
+// var multer = require('multer')
+// var storage = multer.diskStorage({
+//     destination: function (req, file, callback) {
+//         callback(null, './upload')
+//     },
+//     filename: function (req, file, callback) {
+//         callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname)
+//     }
+// })
+// var upload = multer({ 
+//     storage: storage
+// }).single('avatar')
 
-app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(express.static('public'))
+// app.use(bodyParser.urlencoded({ extended: false }))
 
-app.post('/file_upload', function (req, res) {
-    upload(req, res, function (err) {
-        if (err) {
-            console.log("Error uploading file.")
-            return res.end("Error uploading file.")
-        }
-        console.log("File is uploaded")
-        res.end("File is uploaded")
-    })
-})
+// app.post('/file_upload', function (req, res) {
+//     upload(req, res, function (err) {
+//         if (err) {
+//             console.log("Error uploading file.")
+//             return res.end("Error uploading file.")
+//         }
+//         console.log("File is uploaded")
+//         res.end("File is uploaded")
+//     })
+// })
 
-app.get('/time', function (req, res) {
-    console.log(dt.myDateTime())
-    res.end(dt.myDateTime())
-})
+// app.get('/time', function (req, res) {
+//     console.log(dt.myDateTime())
+//     res.end(dt.myDateTime())
+// })
 
-app.listen(8081)
-console.log("Example app listening at http://127.0.0.1:8081")
+// app.listen(8081)
+// console.log("Example app listening at http://127.0.0.1:8081")
+
+// var sqlite3 = require('sqlite3').verbose()
+// var db = new sqlite3.Database('mydb.db')
+// db.serialize(function() {
+//     // ALTER LOGIN chungtv WITH DEFAULT_DATABASE=[master]
+//     // ALTER LOGIN chungtv WITH PASSWORD = '123456' OLD_PASSWORD = '123456'
+//   db.run("CREATE TABLE if not exists user_info (info TEXT)")
+//   var stmt = db.prepare("INSERT INTO user_info VALUES (?)")
+//   for (var i = 0; i < 10; i++) {
+//       stmt.run("Ipsum " + i)
+//   }
+//   stmt.finalize()
+
+//   db.each("SELECT rowid AS id, info FROM user_info", function(err, row) {
+//       console.log(row.id + ": " + row.info)
+//   })
+// })
+
+// db.close()
+
+// //Load modules
+// var sqlite3         =       require('sqlite3').verbose()
+// var db              =       new sqlite3.Database('./database_name.db')
+
+// //Perform SELECT Operation
+// db.all("SELECT * from blah blah blah where this="+that,function(err,rows){
+// //rows contain values while errors, well you can figure out.
+// })
+
+// //Perform INSERT operation.
+// db.run("INSERT into table_name(col1,col2,col3) VALUES (val1,val2,val3)")
+
+// //Perform DELETE operation
+// db.run("DELETE * from table_name where condition")
+
+// //Perform UPDATE operation
+// db.run("UPDATE table_name where condition")
