@@ -406,6 +406,7 @@
 var express = require('express')
 var app = express()
 var fs = require('fs')
+var dt = require('./myfirstmodule')
 
 var bodyParser = require('body-parser')
 var multer = require('multer')
@@ -433,6 +434,11 @@ app.post('/file_upload', function (req, res) {
         console.log("File is uploaded")
         res.end("File is uploaded")
     })
+})
+
+app.get('/time', function (req, res) {
+    console.log(dt.myDateTime())
+    res.end(dt.myDateTime())
 })
 
 app.listen(8081)
