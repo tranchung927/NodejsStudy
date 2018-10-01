@@ -414,7 +414,7 @@ var storage = multer.diskStorage({
         callback(null, './upload')
     },
     filename: function (req, file, callback) {
-        callback(null, file.fieldname + "-" + Date.now() + file.originalname)
+        callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname)
     }
 })
 var upload = multer({ 
@@ -427,8 +427,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.post('/file_upload', function (req, res) {
     upload(req, res, function (err) {
         if (err) {
+            console.log("Error uploading file.")
             return res.end("Error uploading file.")
         }
+        console.log("File is uploaded")
         res.end("File is uploaded")
     })
 })
